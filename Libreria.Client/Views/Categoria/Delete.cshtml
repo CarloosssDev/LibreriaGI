@@ -1,0 +1,36 @@
+﻿@model Libreria.Server.DTO.CategoriaDTO
+
+@{
+    ViewData["Title"] = "Eliminar Categoria";
+}
+
+<h2 class="mb-4 text-danger">🗑️ Eliminar Categoria</h2>
+@{
+    if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+}
+<div class="card shadow-sm border-0 rounded">
+    <div class="card-body">
+        <p>¿Está seguro que desea eliminar la siguiente categoria?</p>
+
+        <dl class="row">
+            <dt class="col-sm-3">Nombre:</dt>
+            <dd class="col-sm-9">@Model.Nombre</dd>
+
+            <dt class="col-sm-3">Descripción:</dt>
+            <dd class="col-sm-9">@Model.Descripcion</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">⬅️ Cancelar</a>
+                <button onclick="return confirm('¿Seguro de eliminar esta categoria? \nLa acción no se puede deshacer.')" type="submit" class="btn btn-danger">🗑️ Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>

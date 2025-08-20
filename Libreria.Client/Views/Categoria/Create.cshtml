@@ -1,0 +1,34 @@
+﻿@model Libreria.Server.DTO.CategoriaDTO
+
+@{
+    ViewData["Title"] = "Crear Categoría";
+}
+
+<h2 class="mb-4 text-primary">➕ Crear Categoría</h2>
+
+<div class="card shadow-sm border-0 rounded">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div class="form-group mb-3">
+                <label asp-for="Nombre" class="form-label fw-bold"></label>
+                <input asp-for="Nombre" class="form-control" placeholder="Ingrese el nombre de la categoría" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Descripcion" class="form-label fw-bold"></label>
+                <textarea asp-for="Descripcion" class="form-control" rows="3" placeholder="Ingrese una descripción"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">⬅️ Cancelar</a>
+                <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

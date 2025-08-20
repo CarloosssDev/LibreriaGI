@@ -1,0 +1,50 @@
+﻿@model Libreria.Server.DTO.SalidaDTO
+
+@{
+    ViewData["Title"] = "Crear Salida";
+}
+
+<h2 class="mb-4">➕ Nueva Salida</h2>
+@{
+    if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+}
+<div class="card shadow-lg border-0 rounded">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="Cantidad" class="form-label fw-bold"></label>
+                <input asp-for="Cantidad" class="form-control" placeholder="Ingresa la cantidad ha sacar" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Motivo" class="form-label fw-bold"></label>
+                <textarea asp-for="Motivo" class="form-control" rows="3" placeholder="Comentario de la salida"></textarea>
+                <span asp-validation-for="Motivo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ProductoId" class="form-label fw-bold">Producto</label>
+                <select asp-for="ProductoId" class="form-select" asp-items="ViewBag.Productos">
+                    <option value="">-- Seleccione un Producto --</option>
+                </select>
+                <span asp-validation-for="ProductoId" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">⬅️ Volver</a>
+                <button type="submit" class="btn btn-success">💾 Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

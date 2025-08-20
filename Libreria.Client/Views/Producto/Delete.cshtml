@@ -1,0 +1,38 @@
+﻿@model Libreria.Server.DTO.ProductoDTO
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<h2 class="mb-4 text-danger">🗑️ Eliminar Producto</h2>
+
+<div class="card shadow-sm border-0 rounded">
+    <div class="card-body">
+        <p>¿Está seguro que desea eliminar el siguiente producto?</p>
+
+        <dl class="row">
+            <dt class="col-sm-3">Nombre:</dt>
+            <dd class="col-sm-9">@Model.Nombre</dd>
+
+            <dt class="col-sm-3">Descripción:</dt>
+            <dd class="col-sm-9">@Model.Descripcion</dd>
+
+            <dt class="col-sm-3">Precio:</dt>
+            <dd class="col-sm-9">@Model.PrecioUnitario.ToString("C")</dd>
+
+            <dt class="col-sm-3">Stock:</dt>
+            <dd class="col-sm-9">@Model.StockActual</dd>
+
+            <dt class="col-sm-3">Categoría:</dt>
+            <dd class="col-sm-9">@Model.CategoriaNombre</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">⬅️ Cancelar</a>
+                <button onclick="return confirm('¿Seguro de eliminar este producto? \nLa acción no se puede deshacer.')" type="submit" class="btn btn-danger">🗑️ Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>

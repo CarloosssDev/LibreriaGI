@@ -1,0 +1,36 @@
+﻿@model Libreria.Server.DTO.SalidaDTO
+
+@{
+    ViewData["Title"] = "Eliminar Salida";
+}
+
+<h2 class="mb-4 text-danger">🗑️ Eliminar Salida</h2>
+
+<div class="card shadow-sm border-0 rounded">
+    <div class="card-body">
+        <p>¿Está seguro que desea eliminar la siguiente Salida?</p>
+
+        <dl class="row">
+            <dt class="col-sm-3">Nombre Producto:</dt>
+            <dd class="col-sm-9">@Model.ProductoNombre</dd>
+
+            <dt class="col-sm-3">Cantidad:</dt>
+            <dd class="col-sm-9">@Model.Cantidad</dd>
+
+            <dt class="col-sm-3">Motivo</dt>
+            <dd class="col-sm-9">@Model.Motivo</dd>
+
+            <dt class="col-sm-3">Fecha:</dt>
+            <dd class="col-sm-9">@Model.Fecha?.ToLongDateString()</dd>
+
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">⬅️ Cancelar</a>
+                <button onclick="return confirm('¿Seguro de eliminar esta Salida? \nLa acción no se puede deshacer.')" type="submit" class="btn btn-danger">🗑️ Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>

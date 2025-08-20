@@ -1,0 +1,62 @@
+﻿@model List<Libreria.Server.DTO.ProductoDTO>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">📦 Productos</h2>
+    <a asp-action="Create" class="btn btn-primary">➕ Nuevo Producto</a>
+</div>
+
+<table class="table table-striped table-hover shadow-sm rounded">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.PrecioUnitario.ToString("C")</td>
+                    <td>
+                        @if (item.StockActual > 10)
+                        {
+                            <span class="badge bg-success">@item.StockActual</span>
+                        }
+                        else if (item.StockActual > 0)
+                        {
+                            <span class="badge bg-warning text-dark">@item.StockActual</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Agotado</span>
+                        }
+                    </td>
+                    <td>@item.CategoriaNombre</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">✏️ Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white">🔎 Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">🗑️ Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No hay productos registrados.</td>
+            </tr>
+        }
+    </tbody>
+</table>

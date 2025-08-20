@@ -1,0 +1,25 @@
+﻿@model Libreria.Server.DTO.CategoriaDTO
+
+@{
+    ViewData["Title"] = "Detalles de Categoría";
+}
+
+<h2 class="mb-4 text-primary">📂 @ViewData["Title"]</h2>
+
+<div class="card shadow-sm border-0 rounded">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">@Model.Nombre</h4>
+    </div>
+
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3 fw-bold">📌 Descripción:</dt>
+            <dd class="col-sm-9">@Model.Descripcion</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Volver</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">✏️ Editar</a>
+    </div>
+</div>

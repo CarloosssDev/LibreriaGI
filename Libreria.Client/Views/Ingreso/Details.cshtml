@@ -1,0 +1,34 @@
+﻿@model Libreria.Server.DTO.IngresoDTO
+
+@{
+    ViewData["Title"] = "Detalles del Ingreso";
+}
+
+<h2 class="mb-4 text-success">📥 @ViewData["Title"]</h2>
+
+<div class="card shadow-sm border-0 rounded">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0">@Model.ProductoNombre</h4>
+    </div>
+
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3 fw-bold">📦 Producto:</dt>
+            <dd class="col-sm-9">@Model.ProductoNombre</dd>
+
+            <dt class="col-sm-3 fw-bold">🔢 Cantidad:</dt>
+            <dd class="col-sm-9">@Model.Cantidad</dd>
+
+            <dt class="col-sm-3 fw-bold">🗓 Fecha de Ingreso:</dt>
+            <dd class="col-sm-9">@Model.Fecha?.ToLongDateString()</dd>
+
+            <dt class="col-sm-3 fw-bold">📝 Comentario:</dt>
+            <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.Comentario) ? "—" : Model.Comentario)</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Volver</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">✏️ Editar</a>
+    </div>
+</div>
